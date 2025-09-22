@@ -101,21 +101,32 @@ const Dashboard = () => {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="interactive" className="mt-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-              <SentimentChart />
-              <div className="flex flex-col gap-4">
-                <div className="flex justify-end">
-                  <Button onClick={() => handleExport('pdf')} className="flex items-center gap-2">
-                    <Download className="w-4 h-4" />
-                    Export PDF
-                  </Button>
-                </div>
-                <WordCloud />
-              </div>
-            </div>
-            <ClauseMapping />
-          </TabsContent>
+         <TabsContent value="interactive" className="mt-6">
+  {/* 
+    This wrapper creates a centered column for your content.
+    - `max-w-5xl`: Prevents the content from getting too wide on large screens.
+    - `mx-auto`: This is the key part that centers the block horizontally.
+  */}
+  <div className="max-w-5xl mx-auto">
+
+    {/* Move the button outside of the old grid structure and place it on top */}
+    <div className="flex justify-end mb-4">
+      <Button onClick={() => handleExport('pdf')} className="flex items-center gap-2">
+        <Download className="w-4 h-4" />
+        Export PDF
+      </Button>
+    </div>
+
+    {/* The SentimentChart is now the only item here */}
+    {/* <div className="mb-6">
+      <SentimentChart />
+    </div> */}
+
+    {/* The ClauseMapping component will also be centered within this container */}
+    <ClauseMapping />
+
+  </div>
+</TabsContent>
 
           <TabsContent value="sentiment" className="mt-6">
             <SentimentChart />

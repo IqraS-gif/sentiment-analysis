@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+// 1. IMPORT YOUR NEW COMPONENT
+import DraftViewer from "./pages/DraftViewer"; 
 
 // Protected Route Component
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -28,6 +30,14 @@ const App = () => (
               <Dashboard />
             </ProtectedRoute>
           } />
+
+          {/* 2. ADD THE NEW ROUTE FOR THE DRAFT VIEWER */}
+          <Route path="/draft-viewer" element={
+            <ProtectedRoute>
+              <DraftViewer />
+            </ProtectedRoute>
+          } />
+
           <Route path="/" element={<Navigate to="/login" replace />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

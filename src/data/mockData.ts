@@ -225,3 +225,80 @@ export const mockTrendData = [
   { date: '2024-01-20', supportive: 28, critical: 25, neutral: 15 },
   { date: '2024-01-21', supportive: 32, critical: 28, neutral: 18 }
 ];
+
+
+export const mockSentimentKeywords = [
+  { 
+    word: 'compliance', 
+    totalCount: 45, 
+    positiveCount: 10, 
+    negativeCount: 30, // High negative count reflects "burden"
+    neutralCount: 5,
+    // Metadata for filtering
+    sections: ['Compliance', 'Enforcement'],
+    stakeholders: ['Corporate', 'Professional'] 
+  },
+  { 
+    word: 'timeline', 
+    totalCount: 38, 
+    positiveCount: 2, 
+    negativeCount: 35, // Overwhelmingly negative
+    neutralCount: 1,
+    sections: ['Implementation'],
+    stakeholders: ['Corporate', 'NGO', 'Individual']
+  },
+  { 
+    word: 'transparency', 
+    totalCount: 32, 
+    positiveCount: 28, // Overwhelmingly positive
+    negativeCount: 2, 
+    neutralCount: 2,
+    sections: ['Transparency'],
+    stakeholders: ['NGO', 'Individual']
+  },
+  { 
+    word: 'penalties', 
+    totalCount: 25, 
+    positiveCount: 5, 
+    negativeCount: 18, // Mostly negative (concerns about structure)
+    neutralCount: 2,
+    sections: ['Enforcement'],
+    stakeholders: ['NGO', 'Professional']
+  },
+  { 
+    word: 'burden', 
+    totalCount: 22, 
+    positiveCount: 0, 
+    negativeCount: 22, // Exclusively negative
+    neutralCount: 0,
+    sections: ['Compliance'],
+    stakeholders: ['Corporate']
+  },
+  {
+    word: 'privacy',
+    totalCount: 20,
+    positiveCount: 15,
+    negativeCount: 3,
+    neutralCount: 2,
+    sections: ['Transparency', 'Compliance'],
+    stakeholders: ['NGO', 'Individual']
+  },
+  {
+    word: 'standards',
+    totalCount: 18,
+    positiveCount: 8,
+    negativeCount: 5,
+    neutralCount: 5,
+    sections: ['Implementation'],
+    stakeholders: ['Professional', 'Corporate']
+  },
+  {
+    word: 'SMEs', // Small and medium-sized enterprises
+    totalCount: 15,
+    positiveCount: 1,
+    negativeCount: 12, // Context is often about challenges
+    neutralCount: 2,
+    sections: ['Compliance'],
+    stakeholders: ['Corporate']
+  }
+];

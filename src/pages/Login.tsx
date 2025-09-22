@@ -18,7 +18,7 @@ const Login = () => {
     // Simulate authentication
     setTimeout(() => {
       localStorage.setItem('isAuthenticated', 'true');
-      navigate('/dashboard');
+      navigate('/draft-viewer');
     }, 1000);
   };
 
