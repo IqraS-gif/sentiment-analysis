@@ -73,59 +73,70 @@ const Dashboard = () => {
         <StatsOverview />
 
         {/* Main Content Tabs */}
-        <Tabs defaultValue="overview" className="mt-6">
+        <Tabs defaultValue="interactive" className="mt-6">
           <TabsList className="grid w-full grid-cols-6 bg-card">
-            <TabsTrigger value="overview" className="flex items-center gap-2">
+            <TabsTrigger value="interactive" className="flex items-center gap-2">
               <BarChart3 className="w-4 h-4" />
-              Overview
+              Interactive Dashboard
             </TabsTrigger>
-            <TabsTrigger value="comments" className="flex items-center gap-2">
+            <TabsTrigger value="sentiment" className="flex items-center gap-2">
+              <TrendingUp className="w-4 h-4" />
+              Sentiment Analysis
+            </TabsTrigger>
+            <TabsTrigger value="wordcloud" className="flex items-center gap-2">
               <MessageCircle className="w-4 h-4" />
-              Comments
+              Word Cloud
             </TabsTrigger>
-            <TabsTrigger value="themes" className="flex items-center gap-2">
-              <Filter className="w-4 h-4" />
-              Themes
+            <TabsTrigger value="summary" className="flex items-center gap-2">
+              <FileText className="w-4 h-4" />
+              Summary Generation
+            </TabsTrigger>
+            <TabsTrigger value="comparative" className="flex items-center gap-2">
+              <PieChart className="w-4 h-4" />
+              Comparative Analysis
             </TabsTrigger>
             <TabsTrigger value="stakeholders" className="flex items-center gap-2">
               <Users className="w-4 h-4" />
-              Stakeholders
-            </TabsTrigger>
-            <TabsTrigger value="clauses" className="flex items-center gap-2">
-              <FileText className="w-4 h-4" />
-              Clauses
-            </TabsTrigger>
-            <TabsTrigger value="trends" className="flex items-center gap-2">
-              <TrendingUp className="w-4 h-4" />
-              Trends
+              Stakeholder Segmentation
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="overview" className="mt-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <TabsContent value="interactive" className="mt-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
               <SentimentChart />
-              <WordCloud />
+              <div className="flex flex-col gap-4">
+                <div className="flex justify-end">
+                  <Button onClick={() => handleExport('pdf')} className="flex items-center gap-2">
+                    <Download className="w-4 h-4" />
+                    Export PDF
+                  </Button>
+                </div>
+                <WordCloud />
+              </div>
+            </div>
+            <ClauseMapping />
+          </TabsContent>
+
+          <TabsContent value="sentiment" className="mt-6">
+            <SentimentChart />
+          </TabsContent>
+
+          <TabsContent value="wordcloud" className="mt-6">
+            <WordCloud />
+          </TabsContent>
+
+          <TabsContent value="summary" className="mt-6">
+            <div className="text-center py-8 text-muted-foreground">
+              Summary Generation feature coming soon...
             </div>
           </TabsContent>
 
-          <TabsContent value="comments" className="mt-6">
-            <CommentsList />
-          </TabsContent>
-
-          <TabsContent value="themes" className="mt-6">
-            <ThematicClusters />
+          <TabsContent value="comparative" className="mt-6">
+            <TrendsAnalytics />
           </TabsContent>
 
           <TabsContent value="stakeholders" className="mt-6">
             <StakeholderSegmentation />
-          </TabsContent>
-
-          <TabsContent value="clauses" className="mt-6">
-            <ClauseMapping />
-          </TabsContent>
-
-          <TabsContent value="trends" className="mt-6">
-            <TrendsAnalytics />
           </TabsContent>
         </Tabs>
       </div>

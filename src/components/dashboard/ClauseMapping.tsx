@@ -1,10 +1,19 @@
+import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { FileText, MessageCircle, AlertTriangle, CheckCircle, Lightbulb } from 'lucide-react';
-import { mockClauseMappings } from '@/data/mockData';
+import { mockClauseMappings, ClauseMapping as ClauseMappingType } from '@/data/mockData';
+import ClauseDetailModal from './ClauseDetailModal';
 
 const ClauseMapping = () => {
+  const [selectedClause, setSelectedClause] = useState<ClauseMappingType | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleClauseClick = (clause: ClauseMappingType) => {
+    setSelectedClause(clause);
+    setIsModalOpen(true);
+  };
   const getIntensityColor = (commentCount: number) => {
     if (commentCount >= 20) return 'bg-sentiment-critical text-white';
     if (commentCount >= 15) return 'bg-orange-500 text-white';
@@ -49,6 +58,7 @@ const ClauseMapping = () => {
                 <div
                   key={clause.id}
                   className={`p-3 rounded-lg transition-all duration-200 hover:scale-105 cursor-pointer ${intensity}`}
+                  onClick={() => handleClauseClick(clause)}
                 >
                   <div className="text-center">
                     <div className="font-bold text-lg">{clause.clauseNumber}</div>
@@ -88,7 +98,7 @@ const ClauseMapping = () => {
           const total = clause.sentimentRatio.supportive + clause.sentimentRatio.critical + clause.sentimentRatio.suggestive;
           
           return (
-            <Card key={clause.id} className="shadow-card border-border hover:shadow-strong transition-all duration-200">
+            <Card key={clause.id} className="shadow-card border-border hover:shadow-strong transition-all duration-200 cursor-pointer" onClick={() => handleClauseClick(clause)}>
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <div>
@@ -177,6 +187,12 @@ const ClauseMapping = () => {
           );
         })}
       </div>
+
+      <ClauseDetailModal 
+        clause={selectedClause}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };

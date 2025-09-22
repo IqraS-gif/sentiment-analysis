@@ -5,13 +5,13 @@ import { mockStats } from '@/data/mockData';
 const SentimentChart = () => {
   const sentimentData = [
     { 
-      name: 'Supportive', 
+      name: 'Positive', 
       value: mockStats.sentimentDistribution.supportive, 
       color: 'hsl(var(--sentiment-supportive))',
       percentage: Math.round((mockStats.sentimentDistribution.supportive / mockStats.totalComments) * 100)
     },
     { 
-      name: 'Critical', 
+      name: 'Negative', 
       value: mockStats.sentimentDistribution.critical, 
       color: 'hsl(var(--sentiment-critical))',
       percentage: Math.round((mockStats.sentimentDistribution.critical / mockStats.totalComments) * 100)
@@ -21,12 +21,6 @@ const SentimentChart = () => {
       value: mockStats.sentimentDistribution.neutral, 
       color: 'hsl(var(--sentiment-neutral))',
       percentage: Math.round((mockStats.sentimentDistribution.neutral / mockStats.totalComments) * 100)
-    },
-    { 
-      name: 'Suggestive', 
-      value: mockStats.sentimentDistribution.suggestive, 
-      color: 'hsl(var(--sentiment-suggestive))',
-      percentage: Math.round((mockStats.sentimentDistribution.suggestive / mockStats.totalComments) * 100)
     }
   ];
 

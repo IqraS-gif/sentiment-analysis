@@ -1,12 +1,21 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { Users, Building, User, Heart, Briefcase } from 'lucide-react';
 import { useState } from 'react';
 import { mockStats } from '@/data/mockData';
+import StakeholderDetailModal from './StakeholderDetailModal';
 
 const StakeholderSegmentation = () => {
+  const [selectedStakeholder, setSelectedStakeholder] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleStakeholderClick = (stakeholderType: string) => {
+    setSelectedStakeholder(stakeholderType);
+    setIsModalOpen(true);
+  };
   const [selectedMetric, setSelectedMetric] = useState<'distribution' | 'sentiment'>('distribution');
 
   const stakeholderData = [
@@ -100,7 +109,7 @@ const StakeholderSegmentation = () => {
       {/* Stakeholder Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {stakeholderData.map((stakeholder, index) => (
-          <Card key={index} className="shadow-card border-border hover:shadow-strong transition-all duration-200">
+          <Card key={index} className="shadow-card border-border hover:shadow-strong transition-all duration-200 cursor-pointer" onClick={() => handleStakeholderClick(stakeholder.type)}>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -134,6 +143,10 @@ const StakeholderSegmentation = () => {
                   <span>{stakeholder.sentiment.neutral}</span>
                 </div>
               </div>
+              
+              <Button variant="outline" size="sm" className="w-full mt-3">
+                View Detailed Analysis
+              </Button>
             </CardContent>
           </Card>
         ))}
@@ -234,6 +247,12 @@ const StakeholderSegmentation = () => {
           </CardContent>
         </Card>
       )}
+
+      <StakeholderDetailModal 
+        stakeholderType={selectedStakeholder}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };
