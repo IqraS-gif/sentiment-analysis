@@ -11,39 +11,17 @@ import {
 import { mockStats } from '@/data/mockData';
 
 const StatsOverview = () => {
-  // We will add the two new cards to this array
   const stats = [
     {
       title: 'Total Comments',
-      value: mockStats.totalComments,
+      value: 6079,
       icon: MessageCircle,
       change: '+12%',
       description: 'From last consultation period'
     },
-
-        {
-      title: 'Average Sentiment',
-      value: '7.2',
-      icon: TrendingUp, // A good icon for averages/trends
-      description: 'Positive overall',
-      variant: 'supportive' as const,
-      // Note: No 'change' property
-    },
-    // --- NEW CARD 2: KEY ISSUES ---
-    {
-      title: 'Key Issues',
-      value: '8',
-      icon: FileText, // Represents documented issues
-      description: 'Requiring attention',
-      variant: 'critical' as const,
-      // Note: No 'change' property
-    },
-
-        // --- NEW CARD 1: AVERAGE SENTIMENT ---
-
     {
       title: 'Supportive',
-      value: mockStats.sentimentDistribution.supportive,
+      value: 2009,
       icon: ThumbsUp,
       change: '+8%',
       description: 'Positive sentiment comments',
@@ -51,51 +29,50 @@ const StatsOverview = () => {
     },
     {
       title: 'Critical',
-      value: mockStats.sentimentDistribution.critical,
+      value:3308,
       icon: ThumbsDown,
       change: '-3%',
       description: 'Critical feedback received',
       variant: 'critical' as const
     },
     {
-      title: 'Stakeholders',
-      value: Object.values(mockStats.stakeholderBreakdown).reduce((a, b) => a + b, 0),
+      title: 'Stakeholders Groups',
+      value: 2,
       icon: Users,
-      change: '+15%',
-      description: 'Active participants'
+      description: '2 main and 3 subgroups analyzed'
     }
   ];
 
   const getVariantClass = (variant?: string) => {
     switch (variant) {
       case 'supportive':
-        return 'text-green-500'; // Made color more explicit for sentiment
+        return 'text-green-500';
       case 'critical':
-        return 'text-red-500';   // Made color more explicit for sentiment
+        return 'text-red-500';
       default:
         return 'text-primary';
     }
   };
 
   return (
-    // Changed grid layout to better accommodate 6 items
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {stats.map((stat, index) => (
         <Card key={index} className="shadow-card border-border animate-fade-in">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+            {/* Heading color changed to dark blue */}
+            <CardTitle className="text-2-xl font-bold text-blue-900">
               {stat.title}
             </CardTitle>
-            <stat.icon className={`h-4 w-4 ${getVariantClass(stat.variant)}`} />
+            <stat.icon className={`h-8 w-8 ${getVariantClass(stat.variant)}`} />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-            <div className="flex items-center justify-between mt-2 min-h-[20px]"> {/* Added min-height for alignment */}
-              <p className="text-xs text-muted-foreground">
+            <div className="text-3xl font-bold text-foreground">{stat.value}</div>
+            <div className="flex items-center justify-between mt-2 min-h-[20px]">
+              {/* Description color changed to black */}
+              <p className="text-m text-black">
                 {stat.description}
               </p>
               
-              {/* --- IMPROVEMENT: Only show badge if 'change' exists --- */}
               {stat.change && (
                 <Badge 
                   variant={stat.change.startsWith('+') ? 'default' : 'secondary'}

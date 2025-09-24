@@ -1,7 +1,6 @@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { CheckCircle, AlertTriangle, Lightbulb, MessageCircle } from 'lucide-react';
+import { CheckCircle, AlertTriangle, Lightbulb } from 'lucide-react';
 import { ClauseMapping } from '@/data/mockData';
 
 interface ClauseDetailModalProps {
@@ -13,11 +12,12 @@ interface ClauseDetailModalProps {
 const ClauseDetailModal = ({ clause, isOpen, onClose }: ClauseDetailModalProps) => {
   if (!clause) return null;
 
+  // Updated to return "Positive", "Negative", "Neutral"
   const getOverallSentiment = (ratio: { supportive: number; critical: number; suggestive: number }) => {
     const max = Math.max(ratio.supportive, ratio.critical, ratio.suggestive);
-    if (max === ratio.supportive) return { type: 'supportive', color: 'text-sentiment-supportive', icon: CheckCircle };
-    if (max === ratio.critical) return { type: 'critical', color: 'text-sentiment-critical', icon: AlertTriangle };
-    return { type: 'suggestive', color: 'text-sentiment-suggestive', icon: Lightbulb };
+    if (max === ratio.supportive) return { type: 'Positive', color: 'text-sentiment-supportive', icon: CheckCircle };
+    if (max === ratio.critical) return { type: 'Negative', color: 'text-sentiment-critical', icon: AlertTriangle };
+    return { type: 'Neutral', color: 'text-sentiment-suggestive', icon: Lightbulb };
   };
 
   const overallSentiment = getOverallSentiment(clause.sentimentRatio);
@@ -26,11 +26,12 @@ const ClauseDetailModal = ({ clause, isOpen, onClose }: ClauseDetailModalProps) 
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            Clause {clause.clauseNumber} - Detailed Analysis
+          <DialogTitle className="flex items-center gap-2 text-2xl">
+            Section {clause.clauseNumber} - Detailed Analysis
             <overallSentiment.icon className={`w-5 h-5 ${overallSentiment.color}`} />
           </DialogTitle>
-          <DialogDescription>
+          {/* Changed text color to black */}
+          <DialogDescription className="text-black text-base">
             {clause.title}
           </DialogDescription>
         </DialogHeader>
@@ -38,30 +39,34 @@ const ClauseDetailModal = ({ clause, isOpen, onClose }: ClauseDetailModalProps) 
         <div className="space-y-6">
           {/* Summary Stats */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="text-center p-4 bg-muted/30 rounded-lg">
-              <div className="text-2xl font-bold text-foreground">{clause.commentCount}</div>
-              <div className="text-sm text-muted-foreground">Total Comments</div>
+            <div className="text-center p-4 bg-slate-100 rounded-lg">
+              <div className="text-2xl font-bold text-black">{clause.commentCount}</div>
+              {/* Changed text color to black */}
+              <div className="text-sm text-black">Total Comments</div>
             </div>
-            <div className="text-center p-4 bg-muted/30 rounded-lg">
+            <div className="text-center p-4 bg-slate-100 rounded-lg">
               <div className={`text-2xl font-bold ${overallSentiment.color}`}>
-                {overallSentiment.type.charAt(0).toUpperCase() + overallSentiment.type.slice(1)}
+                {overallSentiment.type}
               </div>
-              <div className="text-sm text-muted-foreground">Overall Sentiment</div>
+              {/* Changed text color to black */}
+              <div className="text-sm text-black">Overall Sentiment</div>
             </div>
           </div>
 
           {/* Detailed Sentiment Breakdown */}
           <div className="space-y-4">
-            <h4 className="text-lg font-medium text-foreground">Sentiment Breakdown</h4>
+            <h4 className="text-lg font-medium text-black">Sentiment Breakdown</h4>
             
             <div className="space-y-3">
+              {/* Positive Section */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-sentiment-supportive" />
-                    <span>Supportive</span>
+                    <span className="font-medium text-black">Positive</span>
                   </div>
-                  <span className="text-muted-foreground">
+                  {/* Changed text color to black */}
+                  <span className="text-black">
                     {clause.sentimentRatio.supportive}% ({Math.round((clause.sentimentRatio.supportive / 100) * clause.commentCount)} comments)
                   </span>
                 </div>
@@ -73,13 +78,15 @@ const ClauseDetailModal = ({ clause, isOpen, onClose }: ClauseDetailModalProps) 
                 </Progress>
               </div>
 
+              {/* Negative Section */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-2">
                     <AlertTriangle className="w-4 h-4 text-sentiment-critical" />
-                    <span>Critical</span>
+                    <span className="font-medium text-black">Negative</span>
                   </div>
-                  <span className="text-muted-foreground">
+                   {/* Changed text color to black */}
+                  <span className="text-black">
                     {clause.sentimentRatio.critical}% ({Math.round((clause.sentimentRatio.critical / 100) * clause.commentCount)} comments)
                   </span>
                 </div>
@@ -91,13 +98,15 @@ const ClauseDetailModal = ({ clause, isOpen, onClose }: ClauseDetailModalProps) 
                 </Progress>
               </div>
 
+              {/* Neutral Section */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-2">
                     <Lightbulb className="w-4 h-4 text-sentiment-suggestive" />
-                    <span>Suggestive</span>
+                    <span className="font-medium text-black">Neutral</span>
                   </div>
-                  <span className="text-muted-foreground">
+                   {/* Changed text color to black */}
+                  <span className="text-black">
                     {clause.sentimentRatio.suggestive}% ({Math.round((clause.sentimentRatio.suggestive / 100) * clause.commentCount)} comments)
                   </span>
                 </div>
@@ -112,12 +121,13 @@ const ClauseDetailModal = ({ clause, isOpen, onClose }: ClauseDetailModalProps) 
           </div>
 
           {/* Key Insights */}
-          <div className="p-4 bg-muted/20 rounded-lg">
-            <h4 className="text-sm font-medium text-foreground mb-2">Key Insights</h4>
-            <ul className="text-sm text-muted-foreground space-y-1">
-              <li>• This clause received {clause.commentCount > 15 ? 'high' : clause.commentCount > 10 ? 'moderate' : 'low'} stakeholder attention</li>
-              <li>• {overallSentiment.type === 'supportive' ? 'Generally supported by stakeholders' : overallSentiment.type === 'critical' ? 'Faces significant opposition' : 'Mixed reactions with suggestions for improvement'}</li>
-              <li>• Recommended action: {overallSentiment.type === 'critical' ? 'Review and consider revisions' : overallSentiment.type === 'supportive' ? 'Proceed with confidence' : 'Consider incorporating suggestions'}</li>
+          <div className="p-4 bg-slate-100 rounded-lg">
+            <h4 className="text-sm font-medium text-black mb-2">Key Insights</h4>
+            {/* Changed text color to black and updated logic to match new labels */}
+            <ul className="text-sm text-black space-y-1">
+              <li>• This section received {clause.commentCount > 15 ? 'high' : clause.commentCount > 10 ? 'moderate' : 'low'} stakeholder attention.</li>
+              <li>• {overallSentiment.type === 'Positive' ? 'Generally supported by stakeholders.' : overallSentiment.type === 'Negative' ? 'Faces significant opposition.' : 'Mixed reactions with suggestions for improvement.'}</li>
+              <li>• Recommended action: {overallSentiment.type === 'Negative' ? 'Review and consider revisions.' : overallSentiment.type === 'Positive' ? 'Proceed with confidence.' : 'Consider incorporating suggestions.'}</li>
             </ul>
           </div>
         </div>

@@ -148,46 +148,46 @@ export const mockThemes: ThemeCluster[] = [
 export const mockClauseMappings: ClauseMapping[] = [
   {
     id: '1',
-    clauseNumber: '2.3',
-    title: 'Notification Requirements',
-    commentCount: 15,
-    sentimentRatio: { supportive: 20, critical: 60, suggestive: 20 }
+    clauseNumber: '2.1',
+    title: 'Environmental Regulatory Changes',
+    commentCount: 450,
+    sentimentRatio: { supportive: 50, critical: 30, suggestive: 20 }
   },
   {
     id: '2',
-    clauseNumber: '3.1',
-    title: 'Data Protection Standards',
-    commentCount: 22,
-    sentimentRatio: { supportive: 45, critical: 35, suggestive: 20 }
+    clauseNumber: '2.2',
+    title: 'Current Policy Amendments',
+    commentCount: 5000,
+    sentimentRatio: { supportive: 30, critical: 60, suggestive: 10 }
   },
   {
     id: '3',
-    clauseNumber: '4.1',
-    title: 'Transparency Obligations',
-    commentCount: 18,
-    sentimentRatio: { supportive: 75, critical: 15, suggestive: 10 }
+    clauseNumber: '2.3',
+    title: 'Implementation Guidelines',
+    commentCount: 300,
+    sentimentRatio: { supportive: 30, critical: 30, suggestive: 40 }
   },
   {
     id: '4',
-    clauseNumber: '6.2',
-    title: 'Cross-border Transfers',
-    commentCount: 12,
-    sentimentRatio: { supportive: 25, critical: 55, suggestive: 20 }
+    clauseNumber: '2.4',
+    title: 'Monitoring and Compliance Measures',
+    commentCount: 347,
+    sentimentRatio: { supportive: 56, critical: 24, suggestive: 20 }
   },
-  {
-    id: '5',
-    clauseNumber: '7.1',
-    title: 'Enforcement Mechanisms',
-    commentCount: 20,
-    sentimentRatio: { supportive: 35, critical: 40, suggestive: 25 }
-  },
-  {
-    id: '6',
-    clauseNumber: '8.1',
-    title: 'Penalty Structure',
-    commentCount: 16,
-    sentimentRatio: { supportive: 30, critical: 45, suggestive: 25 }
-  }
+  // {
+  //   id: '5',
+  //   clauseNumber: '7.1',
+  //   title: 'Enforcement Mechanisms',
+  //   commentCount: 20,
+  //   sentimentRatio: { supportive: 35, critical: 40, suggestive: 25 }
+  // },
+  // {
+  //   id: '6',
+  //   clauseNumber: '8.1',
+  //   title: 'Penalty Structure',
+  //   commentCount: 16,
+  //   sentimentRatio: { supportive: 30, critical: 45, suggestive: 25 }
+  // }
 ];
 
 export const mockStats = {
@@ -302,3 +302,6 @@ export const mockSentimentKeywords = [
     stakeholders: ['Corporate']
   }
 ];
+
+
+

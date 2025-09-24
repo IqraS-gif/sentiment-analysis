@@ -31,10 +31,10 @@ const Login = () => {
             <Shield className="w-8 h-8 text-primary-foreground" />
           </div>
           <h1 className="text-2xl font-bold text-foreground mb-2">
-            Government Portal
+            Mock Government Portal
           </h1>
           <p className="text-muted-foreground">
-            Stakeholder Consultation Analysis System
+            E-Consultation's Drafts Analysis System
           </p>
         </div>
 
@@ -45,7 +45,7 @@ const Login = () => {
               Secure Login
             </CardTitle>
             <CardDescription>
-              Access the consultation analysis dashboard
+              Access the draft analysis dashboard
             </CardDescription>
           </CardHeader>
           <CardContent>

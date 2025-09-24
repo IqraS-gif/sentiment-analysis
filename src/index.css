@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 */
 
@@ -32,7 +32,7 @@ All colors MUST be HSL.
     --accent: 220 13% 91%;
     --accent-foreground: 220 100% 25%;
 
-    /* Sentiment Colors */
+    /* Original Sentiment Colors */
     --sentiment-positive: 142 76% 36%;
     --sentiment-negative: 0 84% 60%;
     --sentiment-neutral: 45 93% 47%;
@@ -53,11 +53,11 @@ All colors MUST be HSL.
     --gov-blue-dark: 220 100% 15%;
     --gov-gray: 220 9% 46%;
     --gov-gray-light: 220 13% 91%;
-    
+
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
     --gradient-muted: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
-    
+
     /* Shadows */
     --shadow-soft: 0 2px 8px -2px hsl(var(--primary) / 0.1);
     --shadow-card: 0 4px 12px -4px hsl(var(--primary) / 0.15);
@@ -65,21 +65,36 @@ All colors MUST be HSL.
 
     --radius: 0.5rem;
 
+    /* --- ADDED FOR THE CHART --- */
+    --chart-positive: 120 48% 54%; /* Green */
+    --chart-negative: 0 84% 60%;   /* Red */
+    --chart-neutral: 43 96% 56%;  /* Yellow */
+    --chart-grid: 215 16% 90%;
+    --chart-axis: 215 16% 65%;
+    /* --- END OF ADDED STYLES --- */
+
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* --- MERGED STAKEHOLDER COLORS --- */
+    /* Core Group Colors */
+    --core-individual: 221 83% 53%;
+    --core-organization: 221 83% 53%;
+
+    /* Subtype Colors */
+    --individual-student: 142 76% 36%;
+    --individual-business: 45 93% 47%;
+    --individual-professional: 221 83% 53%;
+    --org-extractive: 0 84% 60%;
+    --org-manufacturing: 25 95% 53%;
+    --org-service: 142 76% 36%;
+    /* --- END OF MERGED COLORS --- */
   }
 
   .dark {
@@ -112,6 +127,15 @@ All colors MUST be HSL.
     --border: 220 27% 18%;
     --input: 220 27% 18%;
     --ring: 220 85% 65%;
+
+    /* --- ADDED FOR THE CHART (DARK MODE) --- */
+    --chart-positive: 120 48% 60%;
+    --chart-negative: 0 84% 65%;
+    --chart-neutral: 43 96% 62%;
+    --chart-grid: 213 30% 25%;
+    --chart-axis: 215 20% 65%;
+    /* --- END OF ADDED STYLES --- */
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -120,6 +144,20 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* --- MERGED STAKEHOLDER COLORS (DARK MODE) --- */
+    /* Core Group Colors - Dark Mode */
+    --core-individual: 221 83% 53%;
+    --core-organization: 221 83% 53%;
+
+    /* Subtype Colors - Dark Mode */
+    --individual-student: 142 76% 36%;
+    --individual-business: 45 93% 47%;
+    --individual-professional: 221 83% 53%;
+    --org-extractive: 0 84% 60%;
+    --org-manufacturing: 25 95% 53%;
+    --org-service: 142 76% 36%;
+    /* --- END OF MERGED COLORS --- */
   }
 }
 
