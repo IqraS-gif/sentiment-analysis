@@ -174,7 +174,8 @@ import {
   PieChart,
   Filter,
   Search,
-  Calendar
+  Calendar,
+  ArrowBigLeftDash
 } from 'lucide-react';
 
 import SentimentChart from '@/components/dashboard/SentimentChart';
@@ -217,14 +218,29 @@ const Dashboard = () => {
             </div>
             
             <div className="flex items-center gap-3">
-              <Button variant="outline" size="sm" onClick={() => handleExport('pdf')}>
-                <Download className="w-4 h-4 mr-2" />
-                Export PDF
-              </Button>
-              <Button variant="outline" size="sm" onClick={() => handleExport('excel')}>
-                <Download className="w-4 h-4 mr-2" />
-                Export Excel
-              </Button>
+<Button 
+  variant="outline"
+  size="lg"
+  className="bg-blue-600 text-white hover:bg-blue-500  hover:text-slate-950 text-lg font-semibold"
+  onClick={() => {
+    const link = document.createElement('a');
+    link.href = '/Environmental Policy Draft 2024 report.pdf';  // file path in public folder
+    link.download = 'Environmental Policy Draft 2024 report.pdf';  // desired file name
+    link.click();
+  }}
+>
+  <Download className="w-8 h-8 mr-2" />
+  Export PDF
+</Button>
+
+            <Button asChild variant="outline"
+  size="lg"
+  className="bg-blue-600 text-white hover:bg-blue-500  hover:text-slate-950 text-lg font-semibold">
+  <a href="/draft-viewer" target="_blank" rel="noopener noreferrer" className="flex items-center">
+    <ArrowBigLeftDash className="w-8 h-8 mr-2" />
+    Back to draft viewer
+  </a>
+</Button>
             </div>
           </div>
         </div>
@@ -271,18 +287,7 @@ const Dashboard = () => {
   */}
   <div className="max-w-5xl mx-auto">
 
-    {/* Move the button outside of the old grid structure and place it on top */}
-    <div className="flex justify-end mb-4">
-      <Button onClick={() => handleExport('pdf')} className="flex items-center gap-2">
-        <Download className="w-4 h-4" />
-        Export PDF
-      </Button>
-    </div>
-
-    {/* The SentimentChart is now the only item here */}
-    {/* <div className="mb-6">
-      <SentimentChart />
-    </div> */}
+    
 
     {/* The ClauseMapping component will also be centered within this container */}
     <ClauseMapping />
