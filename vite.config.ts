@@ -5,7 +5,6 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "sentiment-analysis", // <-- ADD THIS: your GitHub repo name 
   server: {
     host: "::",
     port: 8080,
